@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+
+import { Button } from 'react-bootstrap'
+import { MovieListContainer } from './pages/container';
+import Header from './pages/Header';
+import Tabs from './pages/presentation/Tabs';
+import { MovieDetailContainer } from './pages/container/MovieDetailContainer';
+import { EditMovieDetailContainer } from './pages/container';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <Header/>
+        <Routes>
+          <Route index element={<Navigate to="movie-app" replace />} />
+          <Route  path='movie-app' element={<MovieListContainer />} />
+          <Route path='movie/:id' element={<MovieDetailContainer />} />
+          <Route path='movie/:id/edit' element={<EditMovieDetailContainer />} />
+        </Routes>
+
+    </>
   );
 }
 
